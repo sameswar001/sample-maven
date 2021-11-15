@@ -1,6 +1,8 @@
 @Library('shared-library') _
 
 node {
+
+    try {
         stage('Build'){
             git 'https://github.com/sameswar001/sample-maven.git'
 
@@ -10,13 +12,15 @@ node {
                 // To run Maven on a Windows agent, use
                  bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
+        }catch(e){
+
+        }finally {
+            def currentResult = currentBuild.result ?: 'SUCCESS'
+            if (currentResult == 'SUCCESS') {
+                       junit '**/target/surefire-reports/TEST-*.xml'
+                       archiveArtifacts 'target/*.jar
+            }
+        }
             
-            post {
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
-                success {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
-                }
-    }
+
 }
