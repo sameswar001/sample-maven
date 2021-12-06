@@ -1,0 +1,44 @@
+pipeline {
+
+  agent any
+  
+  stages{
+    stag("checkout"){
+    
+      steps{
+        echo "checking out code"
+      }
+    }
+    stag("build"){
+    
+      steps{
+        echo "building code"
+      }
+    }
+     stage("unit test"){
+    
+      steps{
+        echo "running unit tests"
+      }
+    }
+     stage("integration test"){
+    
+      steps{
+          echo "running integration test"
+      }
+    }
+    stage("packagging"){
+    
+      steps{
+          echo "creating archive file"
+      }
+    }
+    stage("deploying"){
+    
+      steps{
+        echo "deploying application"
+      }
+    }
+  }
+
+}
