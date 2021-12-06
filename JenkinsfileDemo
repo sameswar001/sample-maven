@@ -3,13 +3,13 @@ pipeline {
   agent any
   
   stages{
-    stag("checkout"){
+    stage("checkout"){
     
       steps{
         echo "checking out code"
       }
     }
-    stag("build"){
+    stage("build"){
     
       steps{
         echo "building code"
