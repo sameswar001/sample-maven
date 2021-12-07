@@ -28,11 +28,12 @@ pipeline {
       }
     }
      stage("unit test"){
+        /**
         when {
             expression {
                   BRANCH_NAME=='master' && params.executeTests == true            
             }
-        }
+        }**/
       steps{
         echo "branch name ${BRANCH_NAME}"
         echo "running unit tests"
