@@ -31,7 +31,7 @@ pipeline {
         
         when {
             expression {
-                  env.BRANCH_NAME =='master' && params.executeTests == true            
+                  params.executeTests == true            
             }
         }
       steps{
